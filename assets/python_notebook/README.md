@@ -5,7 +5,7 @@ This subfolder contains the Colab notebook detailing the process of creating the
 Steps include:
 
 1. Data Preparation and EDA  (✓ Done)
-2. Data Preprocessing  (❌)
-3. Model Training and evaluation  (❌)
+2. Data Preprocessing  (✓ Done)
+3. Model Training and evaluation  (✓ Done)
 4. Hyperparameter tuning  (❌)
 5. Model Inference  (❌)
