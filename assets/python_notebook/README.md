@@ -12,9 +12,6 @@ Steps include:
 
 
 
-Here's your revised README section with added emojis for visual appeal:
-
----
 
 ### Metric Evaluation Considerations
 
@@ -46,6 +43,4 @@ In training the model, we will assume the role of the lender and provide the fol
 📈 **Model Strategy:**
 - Therefore, in our models, we will prioritize achieving a higher F1 score, which balances precision and recall but with a slight emphasis on recall to align with the company’s goal of minimizing defaulters. We will also take into account the model's accuracy but not as much.
 
----
 
-Feel free to integrate this into your README!
