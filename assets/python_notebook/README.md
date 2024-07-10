@@ -7,7 +7,7 @@ Steps include:
 1. Data Preparation and EDA  (✓ Done)
 2. Data Preprocessing  (✓ Done)
 3. Model Training and evaluation  (✓ Done)
-4. Hyperparameter tuning  (❌)
+4. Hyperparameter tuning  (✓ Done)
 5. Model Inference  (❌)
 
 
