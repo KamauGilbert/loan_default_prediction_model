@@ -8,7 +8,7 @@ Steps include:
 2. Data Preprocessing  (✓ Done)
 3. Model Training and evaluation  (✓ Done)
 4. Hyperparameter tuning  (✓ Done)
-5. Model Inference  (❌)
+5. Model Inference  (✓ Done)
 
 
 
