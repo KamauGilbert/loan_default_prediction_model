@@ -140,7 +140,6 @@ Individuals who are full-time employed, highly educated, and have responsibiliti
 
 By following these preprocessing steps, the dataset is ready for building robust and scalable machine learning models. 🎯
 
-
 ## 🔧 **Model Training**
 
 In this section, we will explore and train the following models/algorithms:
@@ -169,7 +168,7 @@ models = {
 ### 📊 **Performance Metrics**
 We will evaluate the models based on their **accuracy**, **recall**, **precision**, and **F1 score** to choose the best model.
 
-#### 💼 **Business Context for KaGil Lenders (the non-existent client):**
+#### 💼 **Business Context for KaGil Lenders (a hypothetical company):**
 1. **Dataset**: 255,347 records collected over three years.
 2. **Primary Income Source**: Lending.
 3. **Objective**: Reduce the number of loan defaulters.
@@ -218,5 +217,22 @@ Applying class weights results in significant improvements in recall:
 ![Confusion Matrix with class weights](assets/.ipynb_images/xgboost_with_class_weights_confusion_matrix.png)
 ![Feature Importance graph with class weights](assets/.ipynb_images/xgboost_with_class_weights_feature_importance.png)
 
+---
 
+## 🧩 **Inferencing**
 
+Developed various tools to carry out predictions and provide better visualizations:
+
+1. **Jupyter Notebook**: You can use this notebook to perform predictions.
+
+   ![Jupyter](assets/images/jupyter_nbk_inferencing_sample.png)
+
+2. **Flask Deployment**: Deployed the model on Flask and created endpoints. Tested it using Postman.
+
+   ![Postman](assets/images/postman_flask_output.png)
+
+3. **Streamlit App**: Developed a Streamlit app for better visualizations.
+
+   ![Streamlit](assets/images/streamlit_output.png)
+
+For more details on how to use the inferencing files, check out the README.md in the inference output subfolder.
