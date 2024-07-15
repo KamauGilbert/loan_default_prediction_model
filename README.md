@@ -74,8 +74,8 @@ Other considerations:
    - Weak negative correlations with 'age', 'income', 'creditscore', and 'monthsemployed'.
    - Weak positive correlations with 'loanamount', 'numcreditlines', 'interestrate', 'loanterm', and 'dtiratio'.
 
-3. **Total Payment Column:**
-   - Introduced the 'totalpayment' column with notable correlations to its constituent columns.
+3. **Feature Engineering- Total Payment Column:**
+   - Introduced the 'totalpayment' column which is obtained from the formula: totalpayment= loanamount*(1+interestrate)*(loanterm/12)
 
 4. **Multivariate Analysis:**
    - Significant correlations observed between 'totalpayment' and 'loanamount', 'interestrate', 'loanterm'.
@@ -98,9 +98,11 @@ Other considerations:
 Individuals who are full-time employed, highly educated, and have responsibilities such as dependents and mortgages are less likely to default on loans.
 
 
+🔄 **Modeling**
+
+
 ## 📊 **Data Preprocessing**
 
-🔄 **Modeling**
 
 ### Data Preprocessing Steps:
 1. **Splitting Data**:
@@ -137,4 +139,84 @@ Individuals who are full-time employed, highly educated, and have responsibiliti
      ```
 
 By following these preprocessing steps, the dataset is ready for building robust and scalable machine learning models. 🎯
+
+
+## 🔧 **Model Training**
+
+In this section, we will explore and train the following models/algorithms:
+1. 🌳 **RandomForest Classifier**
+2. 📈 **Logistic Regression**
+3. 🌟 **Extreme Gradient Boosting (XGB) Classifier**
+4. 🤝 **K-Nearest Neighbors (KNN)**
+5. 🧠 **Gaussian Naive Bayes (GaussianNB)**
+6. 🐱 **CatBoostClassifier**
+
+```python
+models = {
+    'RandomForest Classifier': RandomForestClassifier(random_state=42),
+    'Logistic Regression': LogisticRegression(random_state=42),
+    'Extreme Gradient Boosting (XGB) Classifier': XGBClassifier(random_state=42),
+    'K-Nearest Neighbors (KNN)': KNeighborsClassifier(),
+    'Gaussian Naive Bayes (GaussianNB)': GaussianNB(),
+    'CatBoostClassifier': CatBoostClassifier(random_state=42, verbose=0)  # Adjust verbosity as needed
+}
+```
+
+### 🏋️ **Training the Models**
+1. **Without Using Class Weights** on all models.
+2. **Using Class Weights** on models that support it due to the imbalance in the target 'default' column (11.6% positive class). These models include: `RandomForestClassifier`, `Logistic Regression`, `XGBClassifier` (using `scale_pos_weight`), and `CatBoostClassifier`.
+
+### 📊 **Performance Metrics**
+We will evaluate the models based on their **accuracy**, **recall**, **precision**, and **F1 score** to choose the best model.
+
+#### 💼 **Business Context for KaGil Lenders (the non-existent client):**
+1. **Dataset**: 255,347 records collected over three years.
+2. **Primary Income Source**: Lending.
+3. **Objective**: Reduce the number of loan defaulters.
+
+Given the model's likely better performance at identifying the negative class (non-defaulters), we focus on improving performance for the positive class (defaulters), aligning with the company’s priorities.
+
+**Precision, Recall, and F1 Score**
+- **Precision**: Higher precision means fewer False Positives, reducing the likelihood of incorrectly classifying a non-defaulter as a defaulter.
+- **Recall**: Higher recall means fewer False Negatives, reducing the likelihood of incorrectly classifying a defaulter as a non-defaulter.
+
+#### 📝 **Company's Decision**
+KaGil Lenders prioritize minimizing loan defaults over maximizing profits. However, caution is necessary to avoid misclassifying good borrowers as defaulters.
+
+### 🔍 **Summary of Training Without Applying Class Weights**
+XGBoost demonstrates a balanced performance:
+1. **Recall**: 8.57% (second highest after GaussianNB at 11.02%).
+2. **Precision**: 56.09% (fourth highest).
+3. **F1 Score**: 14.87% (second highest after GaussianNB's 16.39%).
+4. **Accuracy**: 88.57% (second highest after CatBoost at 88.61%).
+
+### 🔍 **Summary When Applying Class Weights**
+Applying class weights results in significant improvements in recall:
+1. **CatBoost**: Balanced F1 score of 34.45%, second highest precision at 23.73% (after Random Forest at 64%), second highest recall at 62.84% (after Logistic Regression at 67.65%).
+2. **Accuracy**: 72.14% (second highest after Random Forest at 88.49%).
+
+### 🏆 **Overall Summary on Model Training and Evaluation**
+1. **Without Class Weights**: High precision (31% to 63%) and highest accuracies (86% to 88%). XGBoost preferred given KaGil Lenders' business model.
+2. **With Class Weights**: Increased recall (2.63% to 69.25%). CatBoost preferred for reducing defaults while considering profitability.
+
+### 🔧 **Hyperparameter Tuning**
+- Decided to tune XGBoost Model for its good performance with and without class weights.
+
+**Fine-tuning XGBoost Without Applying Class Weights**:
+- Precision: 67.94%
+- Recall: 8.91%
+- F1 Score: 15.75%
+
+![Confusion Matrix without class weights](assets/.ipynb_images/xgboost_without_class_weights_confusion_matrix.png)
+![Feature Importance graph without class weights](assets/.ipynb_images/xgboost_without_class_weights_feature_importance.png)
+
+**Fine-tuning XGBoost With Class Weights**:
+- Precision: 25.05%
+- Recall: 72.13%
+- F1 Score: 37.18%
+
+![Confusion Matrix with class weights](assets/.ipynb_images/xgboost_with_class_weights_confusion_matrix.png)
+![Feature Importance graph with class weights](assets/.ipynb_images/xgboost_with_class_weights_feature_importance.png)
+
+
 
