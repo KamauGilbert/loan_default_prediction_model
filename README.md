@@ -25,7 +25,7 @@ Find the dataset used [here](https://www.kaggle.com/datasets/nikhil1e9/loan-defa
 - Visualized data distributions with boxplots and histograms.
 - Analyzed correlations with the target column.
 - Plotted a histogram and pie chart for default status distribution:
-  ![Distribution of the default status](assets/.ipynb_images/distribution_of_defaulters.png)
+  ![Distribution of defaulters](assets/.ipynb_images/distribution of defaulters.png
 
 Other considerations:
 - [Skewness and Kurtosis](https://www.datacamp.com/tutorial/understanding-skewness-and-kurtosis).
